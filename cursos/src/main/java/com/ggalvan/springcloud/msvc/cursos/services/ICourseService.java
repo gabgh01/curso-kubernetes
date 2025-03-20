@@ -22,4 +22,5 @@ public interface ICourseService {
     Optional<User> userCreate(User user, Long courseId);
 
     Optional<User> removeUserCourse(User user, Long courseId);
+    void deleteCourseUserById(Long id);
 }

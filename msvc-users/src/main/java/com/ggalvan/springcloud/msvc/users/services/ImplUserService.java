@@ -1,5 +1,6 @@
 package com.ggalvan.springcloud.msvc.users.services;
 
+import com.ggalvan.springcloud.msvc.users.client.ICourseClientRest;
 import com.ggalvan.springcloud.msvc.users.models.entity.User;
 import com.ggalvan.springcloud.msvc.users.repositories.IUserRepository;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,12 @@ import java.util.Optional;
 public class ImplUserService implements IUserService {
 
     private final IUserRepository userRepository;
+    private final ICourseClientRest courseClientRest;
 
-    public ImplUserService(IUserRepository userRepository) {
+    public ImplUserService(IUserRepository userRepository, ICourseClientRest courseClientRest) {
+
         this.userRepository = userRepository;
+        this.courseClientRest = courseClientRest;
     }
 
     @Override
@@ -38,8 +42,12 @@ public class ImplUserService implements IUserService {
     @Override
     @Transactional
     public void delete(Long id) {
+
         userRepository.deleteById(id);
+        courseClientRest.deleteCourseUserById(id);
     }
+
+
 
     @Override
     public List<User> findAllById(Iterable<Long> listIds) {

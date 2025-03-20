@@ -130,4 +130,11 @@ public class CourseService implements ICourseService {
         }
         return Optional.empty();
     }
+
+    @Override
+    @Transactional
+    public void deleteCourseUserById(Long id) {
+
+        courseRepository.deleteCourseUserById(id);
+    }
 }

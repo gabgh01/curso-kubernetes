@@ -101,7 +101,7 @@ public class CourseController {
 
     @PutMapping("/asign-user/{courseId}")
     public ResponseEntity<?> asignUser(@RequestBody User user, @PathVariable Long courseId) {
-        log.info("Usuario {}",user.toString() );
+        log.info("Usuario {}", user.toString());
         Optional<User> userOptional;
         try {
 
@@ -151,6 +151,12 @@ public class CourseController {
 
         return ResponseEntity.notFound().build();
 
+    }
+
+    @DeleteMapping("/delete-user-course/{id}")
+    public ResponseEntity<?> deleteUserCourseById(@PathVariable Long id) {
+        courseService.deleteCourseUserById(id);
+        return ResponseEntity.noContent().build();
     }
 
 
