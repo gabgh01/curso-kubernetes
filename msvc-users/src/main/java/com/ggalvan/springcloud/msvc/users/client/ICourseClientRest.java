@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 //spring.application.name=courses
 //server.port=8002
-@FeignClient(name = "courses", url = "localhost:8002/api/courses/")
+//@FeignClient(name = "courses", url = "localhost:8002/api/courses/")
+@FeignClient(name = "courses", url = "host.docker.internal:8002/api/courses/")
 public interface ICourseClientRest {
 
     @DeleteMapping("/delete-user-course/{id}")

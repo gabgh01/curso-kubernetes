@@ -35,7 +35,7 @@ public class UserController {
         return userService.findById(id)
                 .<ResponseEntity<Object>>map(user -> ResponseEntity.ok().body(user))  // Retorna un User si existe
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Collections.singletonMap("error", "Usuario no encontrado")));
+                        .body(Collections.singletonMap("error", "Usuario no encontrado!!!")));
 //                .map(user -> ResponseEntity.ok(user))  // Devuelve 200 OK con el User
 //                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error","error")));
     }
