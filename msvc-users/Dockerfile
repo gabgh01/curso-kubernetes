@@ -1,4 +1,4 @@
-FROM openjdk:17.0.2
+FROM openjdk:17 AS builder
 
 WORKDIR /app/msvc-users
 
@@ -16,8 +16,20 @@ COPY ./msvc-users/src ./src
 
 RUN ./mvnw clean package -DskipTests
 
+
+#usando el builder para hacer solo lo tomar el jar y no las dependencias
+FROM openjdk:17
+
+WORKDIR /app
+
+
+COPY --from=builder /app/msvc-users/target/*.jar msvc-users.jar
+
+
 EXPOSE 8001
 
-ENTRYPOINT ["java","-jar","./target/msvc-users-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","msvc-users.jar"]
+#CMD ["java","-jar","msvc-users.jar"]
 
-
+#
+# Etapa de construcción
