@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "msvc-users", url = "localhost:8001/api/users/")
+@FeignClient(name = "msvc-users", url = "msvc-users:8001/api/users/")
 public interface IUserClientRest {
 
     @GetMapping("/{id}")
